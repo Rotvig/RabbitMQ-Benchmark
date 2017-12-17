@@ -7,7 +7,7 @@ To run this project Erlang and RabbitMQ Server needs to be installed and running
 
 Step 2.
 -----
-Add a admin user with all permission - Username: test and password test
+Add an admin user with all permission - Username: test and password test
 
 Step 3.
 -----
