@@ -7,7 +7,7 @@ To run this project Erlang/OTP 20.2, RabbitMQ Server (version 3.6.14) and dotnet
 
 Step 2.
 -----
-Add an admin user with all permission - Username: test and password test.
+Add an admin user with all permissions - Username: test and password test.
 
 Step 3.
 -----
