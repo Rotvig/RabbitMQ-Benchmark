@@ -1,0 +1,1 @@
+dotnet RabbitMQ.SenderTimed.dll 127.0.0.1 5 5000
