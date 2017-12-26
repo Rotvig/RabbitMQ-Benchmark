@@ -11,7 +11,7 @@ namespace RabbitMQ.SenderTimed
         static void Main(string[] args)
         {
             var ip = "localhost";
-            var expectedNumberOfmessages = 5;
+            var expectedNumberOfmessages = 1000;
             var delay = TimeSpan.FromMilliseconds(3000);
             if (args.Length > 0)
             {

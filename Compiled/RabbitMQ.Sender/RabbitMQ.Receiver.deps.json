@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "RabbitMQ.Sender/1.0.0": {
+      "RabbitMQ.Receiver/1.0.0": {
         "dependencies": {
           "RabbitMQ.Client": "5.0.1"
         },
         "runtime": {
-          "RabbitMQ.Sender.dll": {}
+          "RabbitMQ.Receiver.dll": {}
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {},
@@ -689,7 +689,7 @@
     }
   },
   "libraries": {
-    "RabbitMQ.Sender/1.0.0": {
+    "RabbitMQ.Receiver/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

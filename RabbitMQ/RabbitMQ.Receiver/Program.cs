@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace RabbitMQ.Receiver
 {
@@ -33,6 +37,7 @@ namespace RabbitMQ.Receiver
                 var consumer = new EventingBasicConsumer(channel);
                 var stopWatch = new Stopwatch(); ;
                 var msgNumb = 0;
+                var data = new List<string>();
                 consumer.Received += (model, ea) =>
                 {
                     if (msgNumb == 0)
@@ -48,10 +53,12 @@ namespace RabbitMQ.Receiver
                         TimeSpan ts = stopWatch.Elapsed;
 
                         // Format and display the TimeSpan value.
-                        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                            ts.Hours, ts.Minutes, ts.Seconds,
-                            ts.Milliseconds);
+                        var elapsedTime = $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds:00}";
                         Console.WriteLine("RunTime " + elapsedTime);
+                        msgNumb = 0;
+                        stopWatch = new Stopwatch();
+                        data.Add(elapsedTime);
+                        Task.Factory.StartNew(() => File.WriteAllText("./results.txt", JsonConvert.SerializeObject(data)));
                     }
                     else
                     {

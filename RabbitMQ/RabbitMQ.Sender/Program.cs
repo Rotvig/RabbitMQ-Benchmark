@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using RabbitMQ.Client;
+using System.Threading;
 
 namespace RabbitMQ.Sender
 {
@@ -11,9 +12,11 @@ namespace RabbitMQ.Sender
         {
             var ip = "localhost";
             var expectedNumberOfmessages = 10000;
+            var waitTime = 2000;
             if (args.Length > 0)
             {
                 ip = args.First();
+                waitTime = Int32.Parse(args[1]);
                 expectedNumberOfmessages = Int32.Parse(args.Last());
             }
             Console.WriteLine("Running with IP: " + ip);
@@ -25,9 +28,13 @@ namespace RabbitMQ.Sender
 
                 Console.WriteLine("Hello - ready?");
                 Console.ReadLine();
-                for (var i = 0; i < expectedNumberOfmessages; i++)
+                for (var j = 0; j < 100; j++)
                 {
-                    channel.BasicPublish(exchange: "logs", routingKey: "", basicProperties: null, body: Encoding.UTF8.GetBytes("Hello world from (Client 1) - " + i));
+                    for (var i = 0; i < expectedNumberOfmessages; i++)
+                    {
+                        channel.BasicPublish(exchange: "logs", routingKey: "", basicProperties: null, body: Encoding.UTF8.GetBytes("Hello world from (Client 1) - " + i));
+                    }
+                    Thread.Sleep(waitTime);
                 }
             }
 
